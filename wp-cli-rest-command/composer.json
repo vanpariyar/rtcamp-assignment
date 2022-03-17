@@ -1,0 +1,15 @@
+{
+    "name": "hari/wp-cli-rest-command",
+    "autoload": {
+        "psr-4": {
+            "Hari\\WpCliRestCommand\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronak Vanpariya",
+            "email": "26689210+vanpariyar@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
