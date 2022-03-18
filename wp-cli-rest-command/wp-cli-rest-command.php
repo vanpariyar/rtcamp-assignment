@@ -12,15 +12,32 @@
  * @package         Wp_Cli_Rest_Command
  */
 
-use Wp_Cli_Rest_Command;
+use WP_CLI;
+namespace Wp_Cli_Rest_Command;
+use Wp_Cli_Rest_Command\Fetch;
 
 if ( ! class_exists( 'WP_CLI' ) ) {
 	return;
 }
 
-$wpcli_search_replace_autoloader = dirname( __FILE__ ) . '/vendor/autoload.php';
-if ( file_exists( $wpcli_search_replace_autoloader ) ) {
-	require_once $wpcli_search_replace_autoloader;
+require dirname(__FILE__). '/inc/plugin.php';
+
+class Wp_Cli_Rest_Command {
+
+	public function __construct() {
+		add_action( 'cli_init', array($this, 'wds_cli_register_commands') );
+	}
+
+	/**
+	 * Registers our command when cli get's initialized.
+	 *
+	 * @since  1.0.0
+	 * @author Scott Anderson
+	 */
+	public function wds_cli_register_commands() {
+		\WP_CLI::add_command( 'sync', '\Wp_Cli_Rest_Command\Fetch' );
+	}
+	
 }
 
-$wpcli_rest_command = new Wp_Cli_Rest_Command();
+$Wp_Cli_Rest_Command = new Wp_Cli_Rest_Command();
